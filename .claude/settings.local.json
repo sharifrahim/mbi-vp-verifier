@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(/C:\\Users\\Sharif.rahim\\Documents\\myeg\\project\\non baas\\mbi-vp-verifier/**)",
+      "Read(/C:\\Users\\Sharif.rahim\\Documents\\myeg\\project\\non baas\\mbi-vp-verifier\\src\\main\\java\\com\\mbi\\vpverifier/**)",
+      "Read(/C:\\Users\\Sharif.rahim\\Documents\\myeg\\project\\non baas\\mbi-vp-verifier\\src\\main\\resources/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

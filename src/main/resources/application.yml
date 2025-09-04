@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: MBI VP Verifier
+  
+  # Redis Configuration
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 2000ms
+      jedis:
+        pool:
+          max-active: 10
+          max-wait: -1ms
+          max-idle: 8
+          min-idle: 0
+
+# Token Configuration
+token:
+  provider:
+    # Client credentials (should be encrypted in production)
+    client-id: ${TOKEN_CLIENT_ID:your-client-id}
+    client-secret: ${TOKEN_CLIENT_SECRET:your-client-secret}
+    
+    # Provider URLs
+    create-token-url: ${TOKEN_CREATE_URL:http://localhost:43313/v1/token/create}
+    refresh-token-url: ${TOKEN_REFRESH_URL:http://localhost:43313/v1/token/refresh}
+    
+    # Token management settings
+    access-token-buffer-minutes: 2  # Refresh 2 minutes before expiry
+    refresh-token-buffer-days: 1    # Refresh 1 day before expiry
+    
+    # Redis settings
+    redis:
+      key-prefix: "mbi:vp:token:"
+      access-token-key: "access_token"
+      refresh-token-key: "refresh_token"
+    
+    # Retry settings
+    retry:
+      max-attempts: 3
+      backoff-delay-ms: 1000
+      max-backoff-delay-ms: 5000
+    
+    # Scheduling (in cron format)
+    schedule:
+      access-token: "0 */10 * * * *"    # Every 10 minutes
+      refresh-token: "0 0 0 */5 * *"    # Every 5 days at midnight
+
+# Actuator Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+# Logging
+logging:
+  level:
+    com.mbi.vpverifier.token: DEBUG
+    org.springframework.data.redis: INFO
