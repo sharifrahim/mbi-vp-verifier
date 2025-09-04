@@ -11,15 +11,40 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+/**
+ * HTTP request interceptor that automatically adds OAuth2 Bearer tokens to outbound requests.
+ * 
+ * This interceptor integrates with the RestTemplate to provide transparent OAuth2 authentication
+ * for all HTTP requests. It automatically:
+ * - Adds the Authorization header with a valid Bearer token
+ * - Handles 401 Unauthorized responses by refreshing tokens and retrying
+ * - Excludes token provider URLs to prevent circular authentication calls
+ * 
+ * The interceptor works in conjunction with the TokenService to ensure tokens are always
+ * valid and handles token refresh transparently when authentication fails.
+ * 
+ * @author Sharif Rahim
+ * @see <a href="https://github.com/sharifrahim">GitHub Profile</a>
+ * @since 1.0.0
+ */
 @Component
 public class TokenInterceptor implements ClientHttpRequestInterceptor {
     
     private static final Logger logger = LoggerFactory.getLogger(TokenInterceptor.class);
+    
+    /** HTTP header name for authorization */
     private static final String AUTHORIZATION_HEADER = "Authorization";
+    
+    /** Bearer token prefix for OAuth2 */
     private static final String BEARER_PREFIX = "Bearer ";
     
     private final TokenService tokenService;
     
+    /**
+     * Constructs a new TokenInterceptor with the required token service.
+     * 
+     * @param tokenService service for managing OAuth2 token lifecycle
+     */
     public TokenInterceptor(TokenService tokenService) {
         this.tokenService = tokenService;
     }

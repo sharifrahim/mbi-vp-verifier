@@ -9,6 +9,24 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+/**
+ * Configuration properties for OAuth2 token management system.
+ * 
+ * This record-based configuration class binds to properties prefixed with "token"
+ * and provides type-safe access to all token management settings including:
+ * - OAuth2 client credentials
+ * - Provider endpoint URLs
+ * - Token refresh timing and buffer settings
+ * - Redis storage configuration
+ * - Retry and scheduling parameters
+ * 
+ * All properties are validated using Bean Validation annotations to ensure
+ * proper configuration at application startup.
+ * 
+ * @author Sharif Rahim
+ * @see <a href="https://github.com/sharifrahim">GitHub Profile</a>
+ * @since 1.0.0
+ */
 @ConfigurationProperties(prefix = "token")
 @Validated
 public record TokenConfigurationProperties(

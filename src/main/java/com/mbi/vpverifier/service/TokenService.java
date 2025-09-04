@@ -26,17 +26,46 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Service responsible for OAuth2 token lifecycle management with Redis-based distributed storage.
+ * 
+ * This service handles:
+ * - Token acquisition from the OAuth2 provider
+ * - Automatic token refresh before expiration
+ * - Redis-based token storage with TTL
+ * - Distributed locking to prevent concurrent refresh operations
+ * - Retry mechanisms with exponential backoff
+ * - Token validation and error handling
+ * 
+ * The service is designed for multi-instance deployments with Redis as the shared token store.
+ * It uses distributed locking to ensure only one instance refreshes tokens at a time.
+ * 
+ * @author Sharif Rahim
+ * @see <a href="https://github.com/sharifrahim">GitHub Profile</a>
+ * @since 1.0.0
+ */
 @Service
 public class TokenService {
     
     private static final Logger logger = LoggerFactory.getLogger(TokenService.class);
+    
+    /** Suffix for Redis lock keys to prevent concurrent token refresh operations */
     private static final String LOCK_SUFFIX = "lock";
+    
+    /** Timeout in seconds for acquiring distributed lock */
     private static final int LOCK_TIMEOUT_SECONDS = 30;
     
     private final TokenConfigurationProperties properties;
     private final RedisTemplate<String, Object> redisTemplate;
     private final RestTemplate tokenRestTemplate;
     
+    /**
+     * Constructs a new TokenService with the required dependencies.
+     * 
+     * @param properties configuration properties for token management
+     * @param redisTemplate Redis template for token storage operations
+     * @param tokenRestTemplate dedicated RestTemplate for token operations (without interceptors)
+     */
     public TokenService(TokenConfigurationProperties properties, 
                        RedisTemplate<String, Object> redisTemplate,
                        @Qualifier("tokenRestTemplate") RestTemplate tokenRestTemplate) {
@@ -45,6 +74,14 @@ public class TokenService {
         this.tokenRestTemplate = tokenRestTemplate;
     }
     
+    /**
+     * Initializes tokens on application startup.
+     * 
+     * This method is called automatically after bean construction. It checks for
+     * existing tokens in Redis and requests new tokens if none are found.
+     * 
+     * @throws TokenException if token initialization fails
+     */
     @PostConstruct
     public void initializeTokens() {
         logger.info("Initializing tokens on startup");
@@ -62,6 +99,16 @@ public class TokenService {
         }
     }
     
+    /**
+     * Retrieves a valid access token from Redis or refreshes tokens if needed.
+     * 
+     * This method first attempts to get an access token from Redis. If no token
+     * is found, it triggers a token refresh and then attempts to retrieve the
+     * token again.
+     * 
+     * @return a valid access token string
+     * @throws TokenException if unable to obtain a valid access token
+     */
     public String getAccessToken() {
         String accessToken = getAccessTokenFromRedis();
         if (accessToken == null) {
@@ -77,6 +124,21 @@ public class TokenService {
         return accessToken;
     }
     
+    /**
+     * Refreshes OAuth2 tokens using distributed locking to prevent race conditions.
+     * 
+     * This method uses Redis-based distributed locking to ensure only one instance
+     * can refresh tokens at a time. If a lock cannot be acquired, it waits for
+     * another instance to complete the refresh operation.
+     * 
+     * The refresh process:
+     * 1. Acquires distributed lock
+     * 2. Attempts to refresh using existing refresh token
+     * 3. Falls back to requesting new tokens if refresh fails
+     * 4. Releases the lock
+     * 
+     * @throws TokenException if token refresh fails after all retry attempts
+     */
     public void refreshTokens() {
         String lockKey = getLockKey();
         boolean acquired = acquireDistributedLock(lockKey);
