@@ -1,4 +1,4 @@
-package com.mbi.vpverifier.model;
+package com.zid.verifier.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

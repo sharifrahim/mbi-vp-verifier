@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.mbi.vpverifier</groupId>
-	<artifactId>mbi-vp-verifier</artifactId>
+	<artifactId>zid-verifier</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>MBI VP Verifier</name>
-	<description>Client application for verifying verifiable presentations via MBI         VC Service APIs</description>
+	<name>ZID Verifier</name>
+	<description>Client application for verifying verifiable presentations via ZID Service APIs</description>
 	<url/>
 	<licenses>
 		<license/>

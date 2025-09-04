@@ -1,13 +1,13 @@
-package com.mbi.vpverifier;
+package com.zid.verifier;
 
-import com.mbi.vpverifier.config.TokenConfigurationProperties;
+import com.zid.verifier.config.TokenConfigurationProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
- * Main Spring Boot application class for MBI VP Verifier service.
+ * Main Spring Boot application class for ZID Verifier service.
  * 
  * This application provides OAuth2 token management capabilities and VP (Verifiable Presentation)
  * verification services. It includes automatic token refresh, Redis caching, and distributed
@@ -27,10 +27,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 @EnableConfigurationProperties(TokenConfigurationProperties.class)
-public class MbiVpVerifierApplication {
+public class ZidVerifierApplication {
 
 	/**
-	 * Main entry point for the MBI VP Verifier application.
+	 * Main entry point for the ZID Verifier application.
 	 * 
 	 * Initializes the Spring Boot context with token management, scheduling,
 	 * and configuration property binding enabled.
@@ -38,7 +38,7 @@ public class MbiVpVerifierApplication {
 	 * @param args command line arguments passed to the application
 	 */
 	public static void main(String[] args) {
-		SpringApplication.run(MbiVpVerifierApplication.class, args);
+		SpringApplication.run(ZidVerifierApplication.class, args);
 	}
 
 }

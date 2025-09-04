@@ -1,6 +1,6 @@
-package com.mbi.vpverifier.controller;
+package com.zid.verifier.controller;
 
-import com.mbi.vpverifier.service.TokenService;
+import com.zid.verifier.service.TokenService;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

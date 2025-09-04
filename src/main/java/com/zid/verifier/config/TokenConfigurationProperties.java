@@ -1,4 +1,4 @@
-package com.mbi.vpverifier.config;
+package com.zid.verifier.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.bind.ConstructorBinding;

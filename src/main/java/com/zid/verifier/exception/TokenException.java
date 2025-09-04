@@ -1,4 +1,4 @@
-package com.mbi.vpverifier.exception;
+package com.zid.verifier.exception;
 
 /**
  * Runtime exception thrown when OAuth2 token operations fail.

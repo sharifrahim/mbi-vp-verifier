@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(/C:\\Users\\Sharif.rahim\\Documents\\myeg\\project\\non baas\\mbi-vp-verifier\\src\\main\\java\\com\\mbi\\vpverifier/**)",
+      "Read(/C:\\Users\\Sharif.rahim\\Documents\\myeg\\project\\non baas\\mbi-vp-verifier\\src\\main\\java\\com\\mbi\\vpverifier/**)",
+      "Read(/C:\\Users\\Sharif.rahim\\Documents\\myeg\\project\\non baas\\mbi-vp-verifier\\src\\main\\java\\com\\mbi\\vpverifier\\config/**)",
+      "Read(/C:\\Users\\Sharif.rahim\\Documents\\myeg\\project\\non baas\\mbi-vp-verifier\\src\\main\\java\\com\\mbi\\vpverifier\\config/**)",
+      "Read(/C:\\Users\\Sharif.rahim\\Documents\\myeg\\project\\non baas\\mbi-vp-verifier\\src\\main\\java\\com\\mbi\\vpverifier\\controller/**)",
+      "Read(/C:\\Users\\Sharif.rahim\\Documents\\myeg\\project\\non baas\\mbi-vp-verifier\\src\\main\\java\\com\\mbi\\vpverifier\\controller/**)",
+      "Bash(find:*)",
+      "Read(/C:\\Users\\Sharif.rahim\\Documents\\myeg\\project\\non baas\\mbi-vp-verifier\\src\\test\\java\\com\\mbi\\vpverifier/**)",
+      "Bash(mvn clean:*)",
+      "Bash(mvn test:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

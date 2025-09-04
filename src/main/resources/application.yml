@@ -1,6 +1,6 @@
 spring:
   application:
-    name: MBI VP Verifier
+    name: ZID Verifier
   
   # Redis Configuration
   data:
@@ -36,7 +36,7 @@ token:
     
     # Redis settings
     redis:
-      key-prefix: "mbi:vp:token:"
+      key-prefix: "zid:verifier:token:"
       access-token-key: "access_token"
       refresh-token-key: "refresh_token"
     
@@ -64,5 +64,5 @@ management:
 # Logging
 logging:
   level:
-    com.mbi.vpverifier.token: DEBUG
+    com.zid.verifier.token: DEBUG
     org.springframework.data.redis: INFO

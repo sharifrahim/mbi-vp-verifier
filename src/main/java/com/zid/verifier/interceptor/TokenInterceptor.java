@@ -1,6 +1,6 @@
-package com.mbi.vpverifier.interceptor;
+package com.zid.verifier.interceptor;
 
-import com.mbi.vpverifier.service.TokenService;
+import com.zid.verifier.service.TokenService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpRequest;

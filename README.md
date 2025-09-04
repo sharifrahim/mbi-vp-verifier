@@ -1,10 +1,10 @@
-# MBI VP Verifier
+# ZID Verifier
 
-A Spring Boot application for verifying Verifiable Presentations (VP) via MBI VC Service APIs.
+A Spring Boot application for verifying Verifiable Presentations (VP) via ZID Service APIs.
 
 ## Features
 
-- Verify verifiable presentations through MBI VC Service APIs
+- Verify verifiable presentations through ZID Service APIs
 - Automatic OAuth2 token management
 - Health monitoring endpoints
 
@@ -18,7 +18,7 @@ A Spring Boot application for verifying Verifiable Presentations (VP) via MBI VC
 
 ### 1. Set Environment Variables
 
-Make sure you have your client ID and client secret from MBI VC Provider, then set:
+Make sure you have your client ID and client secret from ZID Provider, then set:
 
 ```bash
 export TOKEN_CLIENT_ID=your-client-id
@@ -52,7 +52,7 @@ mvn spring-boot:run
 
 # Production
 mvn clean package
-java -jar target/mbi-vp-verifier-0.0.1-SNAPSHOT.jar
+java -jar target/zid-verifier-0.0.1-SNAPSHOT.jar
 ```
 
 ## Usage

@@ -1,6 +1,6 @@
-package com.mbi.vpverifier.config;
+package com.zid.verifier.config;
 
-import com.mbi.vpverifier.interceptor.TokenInterceptor;
+import com.zid.verifier.interceptor.TokenInterceptor;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

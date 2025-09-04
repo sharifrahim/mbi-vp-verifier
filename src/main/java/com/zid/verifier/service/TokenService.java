@@ -1,9 +1,9 @@
-package com.mbi.vpverifier.service;
+package com.zid.verifier.service;
 
-import com.mbi.vpverifier.config.TokenConfigurationProperties;
-import com.mbi.vpverifier.exception.TokenException;
-import com.mbi.vpverifier.model.TokenResponse;
-import com.mbi.vpverifier.util.RetryUtils;
+import com.zid.verifier.config.TokenConfigurationProperties;
+import com.zid.verifier.exception.TokenException;
+import com.zid.verifier.model.TokenResponse;
+import com.zid.verifier.util.RetryUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;

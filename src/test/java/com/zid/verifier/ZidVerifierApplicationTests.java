@@ -1,10 +1,10 @@
-package com.mbi.vpverifier;
+package com.zid.verifier;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MbiVpVerifierApplicationTests {
+class ZidVerifierApplicationTests {
 
 	@Test
 	void contextLoads() {
