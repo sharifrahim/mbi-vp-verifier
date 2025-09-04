@@ -15,16 +15,20 @@ spring:
           max-idle: 8
           min-idle: 0
 
+# Provider Configuration
+provider:
+  base-url: http://localhost:43313
+
 # Token Configuration
 token:
   provider:
     # Client credentials (should be encrypted in production)
-    client-id: ${TOKEN_CLIENT_ID:your-client-id}
-    client-secret: ${TOKEN_CLIENT_SECRET:your-client-secret}
+    client-id: ${TOKEN_CLIENT_ID}
+    client-secret: ${TOKEN_CLIENT_SECRET}
     
     # Provider URLs
-    create-token-url: ${TOKEN_CREATE_URL:http://localhost:43313/v1/token/create}
-    refresh-token-url: ${TOKEN_REFRESH_URL:http://localhost:43313/v1/token/refresh}
+    create-token-url: ${provider.base-url}/v1/token/create
+    refresh-token-url: ${provider.base-url}/v1/token/refresh
     
     # Token management settings
     access-token-buffer-minutes: 2  # Refresh 2 minutes before expiry
